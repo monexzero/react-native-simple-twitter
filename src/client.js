@@ -39,12 +39,12 @@ class Client {
     this.TokenRequestHeaderParams = Util.createTokenRequestHeaderParams(this.ConsumerKey, { callback });
     this.TokenRequestHeaderParams = Util.createSignature(this.TokenRequestHeaderParams, 'POST', baseURL + requestTokenURL, this.ConsumerSecret);
 
-    const { oauthToken, oauthTokenSecret } = await Request(
+    const { oauth_token, oauth_token_secret } = await Request(
       'POST',
       baseURL + requestTokenURL,
       this.TokenRequestHeaderParams,
     );
-    this.setAccessToken(oauthToken, oauthTokenSecret);
+    this.setAccessToken(oauth_token, oauth_token_secret);
 
     return `${baseURL + authorizationURL}?oauth_token=${this.Token}`;
   }
