@@ -57,12 +57,12 @@ class Client {
     this.TokenRequestHeaderParams = Util.createSignature(this.TokenRequestHeaderParams, 'POST', baseURL + accessTokenURL, this.ConsumerSecret, this.TokenSecret);
     this.TokenRequestHeaderParams.oauth_verifier = verifier;
 
-    const { oauth_token, oauth_token_secret } = await Request(
+    const { oauthToken, oauthTokenSecret } = await Request(
       'POST',
       baseURL + accessTokenURL,
       this.TokenRequestHeaderParams,
     );
-    this.setAccessToken(oauth_token, oauth_token_secret);
+    this.setAccessToken(oauthToken, oauthTokenSecret);
 
     return { oauthToken, oauthTokenSecret };
   }
